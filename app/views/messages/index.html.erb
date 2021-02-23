@@ -1,6 +1,10 @@
 <div class="wrapper">
-  <%= render "side_bar" %>
-  <%= render "main_chat"%>
+  <div class="side-bar">
+    <%= render "side_bar" %>
+    <%# 部分テンプレートの読み込み %>
+    <%# _main_side_bar.html.erb ファイルを読み込んでいる。記述する時はファイル名先頭の_や拡張子は必要ない  %>
+  </div>
+  <div class="chat">
+    <%= render "main_chat"%>
+  </div>
 </div>
-<%# 部分テンプレートの読み込み %>
-<%# _main_side_bar.html.erb  _main_chat.html.erb ファイルを読み込んでいる。記述する時はファイル名先頭の_や拡張子は必要ない  %>
