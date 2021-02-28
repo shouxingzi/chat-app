@@ -32,6 +32,8 @@
         <%# room[user_ids][]にログイン中のユーザーidを格納するための記述 %>
         <%# hiddenにすることで画面上には表示されないinput要素を作成している %>
         <%# {"room" => {"user_ids" => ["選択したユーザーのid", "現在ログインしているユーザーのid"]}} というparams中身になっている%>
+        <%# 新規作成ルーム名：料理の会   選択したユーザーid:1  ログイン中ユーザーid:2  だとすると最終的にroomの中身は以下になる %>
+        <%# "room"=>{"name"=>"料理の会", "user_ids"=>["1", "2"]} %>
     </div>
     <div class='chat-room-form__field'>
       <div class='chat-room-form__field--left'></div>
