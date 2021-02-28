@@ -54,3 +54,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+
+gem 'pry-rails'
+# デバッグ用のGem。処理を途中で止めるbinding.pryが使えるようになる

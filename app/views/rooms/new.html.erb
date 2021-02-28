@@ -1,0 +1,45 @@
+<%# チャットルーム作成画面ビュー %>
+<div class='chat-room-form'>
+  <h1>新規チャットルーム</h1>
+  <%=form_with model: @room, local: true do |f|%>
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'>
+        <%= f.label :チャットルーム名, class: 'chat-room-form__label'%>
+      </div>
+      <div class='chat-room-form__field--right'>
+        <%= f.text_field :name, class: 'chat__room_name chat-room-form__input', placeholder: 'チャットルーム名を入力してください'%>
+      </div>
+    </div>
+    <div class='chat-room-form__field'>
+    </div>
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'>
+        <label class='chat-room-form__label' for='chat_room_チャットメンバー'>チャットメンバー</label>
+      </div>
+      <div class='chat-room-form__field--right'>
+        <select name="room[user_ids][]">
+        <%# 選択したユーザーidとログイン中のユーザーidの両方を格納したいため、ハッシュを入れ子にしている %>
+          <option value="">チャットするユーザーを選択してください</option>
+          <% User.where.not(id: current_user.id).each do |user| %>
+          <%# モデル名.where.not("条件")は条件に一致したレコード以外の値を配列として取得する %>
+          <%# ここではログイン中のユーザー以外の名前をプルダウンメニューに載せている %>
+            <option value=<%= user.id %>><%= user.name %></option>
+            <%# プルダウンメニューにuser.nameを表示 %>
+            <%# room[user_ids][]にuser.idを格納している。{"room" => {"user_ids" => ["選択したユーザーのid"]}} %>
+          <% end %>
+        </select>
+        <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
+        <%# room[user_ids][]にログイン中のユーザーidを格納するための記述 %>
+        <%# hiddenにすることで画面上には表示されないinput要素を作成している %>
+        <%# {"room" => {"user_ids" => ["選択したユーザーのid", "現在ログインしているユーザーのid"]}} というparams中身になっている%>
+        <%# 新規作成ルーム名：料理の会   選択したユーザーid:1  ログイン中ユーザーid:2  だとすると最終的にroomの中身は以下になる %>
+        <%# "room"=>{"name"=>"料理の会", "user_ids"=>["1", "2"]} %>
+    </div>
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'></div>
+      <div class='chat-room-form__field--right'>
+        <%= f.submit class: 'chat-room-form__action-btn'%>
+      </div>
+    </div>
+  <% end %>
+</div>
