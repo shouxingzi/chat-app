@@ -21,6 +21,11 @@ class RoomsController < ApplicationController
   # テーブルに保存する前にセキュリティ対策としてストロングパラメーターを使い許可するパラメーターを指定してからデータを保存するよう推奨されているのでprivate以下で許可
   # DBに保存が成功したらルートパスへ遷移、失敗したら新規チャットルーム作成画面へ遷移
 
+  def destroy
+    room = Room.find(params[:id])
+    room.destroy
+    redirect_to root_path
+  end
 
   private
   def room_params
