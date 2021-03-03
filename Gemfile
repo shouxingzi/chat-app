@@ -57,3 +57,6 @@ gem 'devise'
 
 gem 'pry-rails'
 # デバッグ用のGem。処理を途中で止めるbinding.pryが使えるようになる
+
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
